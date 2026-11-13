@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다음 생애 환생 가챠 - 나는 어디서 태어날까?</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&family=Jua&display=swap" rel="stylesheet">
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="stars-bg"></div>
+
+  <main class="container">
+    <!-- 1. Intro Screen -->
+    <section id="screen-intro" class="card fade-in">
+      <div class="badge">🌐 지구 리스폰 시뮬레이터</div>
+      <h1 class="title">다음 생애<br><span class="highlight-text">환생 국가 가챠</span> 🎲</h1>
+      <p class="subtitle">
+        지구 인구 및 출생률 통계 기반!<br>
+        내가 지금 다시 태어난다면 과연 어떤 나라의 아기로 태어날까?
+      </p>
+
+      <div class="karma-box">
+        <h3>✨ 이번 생의 업보(Karma) 정산</h3>
+        <p class="karma-desc">약간의 가중치를 더해 운명을 시험해보세요</p>
+        <div class="karma-options">
+          <label class="karma-item">
+            <input type="radio" name="karma" value="normal" checked>
+            <div class="karma-btn">
+              <span class="icon">⚖️</span>
+              <div>
+                <strong>현실적인 인구 비율 (추천)</strong>
+                <small>현실 고증 100%! 인도·중국 당첨 확률 극상승</small>
+              </div>
+            </div>
+          </label>
+          <label class="karma-item">
+            <input type="radio" name="karma" value="lucky">
+            <div class="karma-btn">
+              <span class="icon">🍀</span>
+              <div>
+                <strong>착하게 살았음 (선진국 +5%)</strong>
+                <small>유럽, 북미, 북유럽 등 복지국가 버프 소폭 적용</small>
+              </div>
+            </div>
+          </label>
+          <label class="karma-item">
+            <input type="radio" name="karma" value="chaos">
+            <div class="karma-btn">
+              <span class="icon">🌪️</span>
+              <div>
+                <strong>혼돈의 올랜덤 (전세계 동등 확률)</strong>
+                <small>인구 무시! 바티칸부터 모나코, 남극(?)까지</small>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <button id="start-btn" class="main-btn pulse">
+        <span>환생의 문 입장하기 🚪</span>
+      </button>
+
+      <div class="footnote">
+        * 전 세계 실제 연간 신생아 출생 비율 데이터가 적용되어 있습니다.
+      </div>
+    </section>
+
+    <!-- 2. Roulette / Drawing Screen -->
+    <section id="screen-gacha" class="card hidden">
+      <div class="gacha-header">
+        <span class="pulse-dot"></span>
+        <h2>저승 전산망 접속 중...</h2>
+        <p class="sub-status">신생아 배정 티켓을 발급하고 있습니다 🪪</p>
+      </div>
+
+      <div class="roulette-box">
+        <div class="slot-window">
+          <div id="slot-flag" class="slot-flag">🌍</div>
+          <div id="slot-name" class="slot-name">운명의 나라 추첨 중...</div>
+          <div id="slot-sub" class="slot-sub">데이터베이스 스캔 중...</div>
+        </div>
+        <div class="scanning-bar"></div>
+      </div>
+
+      <div class="gacha-messages" id="gacha-msg">
+        "인도 인구가 14억이라는 사실을 잊지 마세요..."
+      </div>
+    </section>
+
+    <!-- 3. Result Screen -->
+    <section id="screen-result" class="card hidden">
+      <div class="result-badge" id="res-badge">🎉 배정 완료</div>
+      
+      <div class="result-flag-wrap">
+        <span class="result-flag" id="res-flag">🇮🇳</span>
+        <div class="rarity-tag" id="res-rarity">출생 확률 17.5%</div>
+      </div>
+
+      <h1 class="result-country" id="res-country">인도</h1>
+      <p class="result-title" id="res-title">"지구상에서 가장 핫하고 인구 많은 대제국의 아기!"</p>
+
+      <div class="specs-grid">
+        <div class="spec-card">
+          <span class="spec-label">태어날 확률</span>
+          <span class="spec-val" id="res-prob">약 17.8%</span>
+        </div>
+        <div class="spec-card">
+          <span class="spec-label">예상 직업/특성</span>
+          <span class="spec-val" id="res-trait">IT 천재 or 볼리우드 스타</span>
+        </div>
+        <div class="spec-card">
+          <span class="spec-label">초기 지급 패시브</span>
+          <span class="spec-val" id="res-passive">향신료 내성 100%</span>
+        </div>
+        <div class="spec-card">
+          <span class="spec-label">인생 난이도</span>
+          <span class="spec-val" id="res-difficulty">★★★★☆ (하드)</span>
+        </div>
+      </div>
+
+      <div class="reaction-box">
+        <div class="reaction-quote" id="res-quote">
+          "와 나 다시 태어나면 인도인이네 ㅋㅋㅋ IT 수학의 신 간다!"
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="retry-btn" class="main-btn btn-secondary">
+          <span>🔄 다음 생 다시 돌리기 (재환생)</span>
+        </button>
+        <button id="share-btn" class="main-btn btn-primary">
+          <span>📋 결과 텍스트 복사하기</span>
+        </button>
+      </div>
+
+      <!-- History log -->
+      <div class="history-section">
+        <h4>📜 나의 전생 / 다음 생 기록</h4>
+        <div class="history-list" id="history-list">
+          <!-- history items will be rendered here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="countries.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
